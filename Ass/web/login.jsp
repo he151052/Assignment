@@ -9,23 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="login.css" />
-        <style>
-            form,h1{
-                text-align: center;
-            }
-            input[type="submit"]{
-                margin-top:20px;
-            }
-        </style>
+        <title>Log in</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+        <link href="css/login.css" rel="stylesheet" />
+
+
     </head>
     <body>
-        <h1>Login</h1>
+
         <form action="" method="post">
-            <label for="username">Username:</label> 
+            <h1>Login</h1>
+           
+            <i class="fa-solid fa-user icon"></i>
             <input  type="text" id="username" name="username" placeholder="Enter username"> <br>
-            <label for="password">Password: </label> 
+            <i class="fa-solid fa-lock icon"></i>
             <input type="password" id="password" name="password" placeholder="Enter password"> <br>
             <input type="Submit" value="Log in">
         </form>

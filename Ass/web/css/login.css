@@ -5,15 +5,54 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 /* 
     Created on : Feb 6, 2023, 4:12:07 PM
     Author     : oki
+*/
 
 *{
     font-family: sans-serif;
+    box-sizing: border-box;
+    background-color: #1abc9c;
+}
+form{
+    text-align: center;
+    margin:50px 450px;
+    background-color: #fff;
+    padding: 25px 0 50px 0;
+}
+h1{
+    background-color: #fff;
+    margin: 0 0 15px 0;
+}
+input[type="submit"]{
+    margin-top:20px;
+    background-color:  #16a085;
+    border:none;
+    width: 334px;
+    border-radius: 5px;
+    color: #fff;
+}
+input[type="submit"]:hover{
+    background-color: #12876f;
+}
+label{
+    background-color: #fff;
+
 }
 input{
     border: none;
     border-bottom: 1px solid black;
     outline: 0;
-
+    background-color: #fff;
+    padding: 10px;
+    font-size: 25px;
+    margin-bottom:10px;
+    text-align: center;
 }
-*/
-
+.icon {
+    padding: 10px;
+    min-width: 40px;
+}
+i {
+    position: absolute;
+    font-size: 25px;
+    background: white;
+}

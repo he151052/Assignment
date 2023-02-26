@@ -49,13 +49,35 @@ header{
     height: 500px !important;
    
 }
-
+.new-arrivals{
+    position: relative;
+}
+.new-arrivals .header h2:after{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 46.5999%;
+    width: 100px;
+    height: 4px;
+    background-color: orange;
+    text-align: center;
+    top:75px;
+}
+.card img{
+    aspect-ratio:4/3;
+}
 footer i{
     transition: all .5s;
+    
+    
 }
-footer i:first-of-type:hover,
-footer i:nth-of-type(2):hover,
-footer i:nth-of-type(3):hover{
+footer a{
+    text-decoration: none;
+    color: black;
+}
+footer a:first-of-type i:hover,
+footer a:nth-of-type(2) i:hover,
+footer a:nth-of-type(3) i:hover{
     color:blue;
 }
 

@@ -23,7 +23,7 @@ header{
     float: left;
 }
 .header__left h3{
-   margin: 0;
+    margin: 0;
 }
 .header__right{
     float: right;
@@ -42,17 +42,18 @@ header{
 .navbar{
     position: fixed;
     z-index: 10;
-   
+
     width: 100%;
 }
 .carousel .carousel-item img{
     height: 500px !important;
-   
+
 }
-.new-arrivals{
+.new-arrivals,.products{
     position: relative;
 }
-.new-arrivals .header h2:after{
+.header h2:after
+{
     content: "";
     display: block;
     position: absolute;
@@ -66,10 +67,15 @@ header{
 .card img{
     aspect-ratio:4/3;
 }
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 footer i{
     transition: all .5s;
-    
-    
+
+
 }
 footer a{
     text-decoration: none;
@@ -83,4 +89,10 @@ footer a:nth-of-type(3) i:hover{
 
 footer i:last-of-type:hover{
     color:red;
+}
+#myBtn{
+    position: fixed;
+    z-index: 20;
+    bottom: 15px;
+    right: 20px;
 }

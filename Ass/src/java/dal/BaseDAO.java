@@ -24,7 +24,7 @@ public abstract class BaseDAO<T> {
         try {
             String user = "sa";
             String pass = "123";
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=testDept;integratedSecurity=true";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=Assignment;integratedSecurity=true";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
@@ -32,6 +32,6 @@ public abstract class BaseDAO<T> {
         }
     }
     
-    public abstract ArrayList<T> getStudents();
+   
     
 }

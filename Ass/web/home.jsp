@@ -3,6 +3,7 @@
     Created on : Feb 8, 2023, 1:26:12 PM
     Author     : oki
 --%>
+<%@page import="model.Category"%>
 <%@page import="model.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -81,8 +82,15 @@
                         <div class="card h-100">
                             <img src="<%=s.getImage() %>" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><%=s.getName() %></h5>
+                                <h5 class="card-title fw-bold"><%=s.getName() %></h5>
                                 <p class="card-text"><%=s.getTitle() %></p>
+                                <p class="card-text text-success fs-5 fw-bold">$<%=s.getPrice()%></p>  
+                            </div>
+                            <div class="card-footer text-center">
+                               
+                                    <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
+                                
+                                
                             </div>
                         </div>
                     </div>

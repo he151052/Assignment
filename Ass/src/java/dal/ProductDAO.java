@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Category;
 import model.Product;
 
 /**
@@ -40,11 +41,29 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return list;
     }
-
+    
+    public List<Category> getAllCategory() {
+        List<Category> lc = new ArrayList<>();
+        String sql = "SELECT * from category";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Category c = new Category();
+                c.setCid(rs.getInt("cid"));
+                c.setCname(rs.getString("cname"));
+               
+                lc.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lc;
+    }
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        List<Product> l = dao.getAllProduct();
-        for (Product p : l) {
+         List<Category> lc = dao.getAllCategory();
+        for (Category p : lc) {
             System.out.println(p);
         }
     }

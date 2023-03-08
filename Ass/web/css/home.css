@@ -35,7 +35,7 @@ header{
 .container-fluid{
     padding: 0 45px;
 }
-.fa-cart-shopping{
+.shopping-cart .fa-cart-shopping{
     font-size: 25px;
     padding: 0 0 0 15px;
 }
@@ -67,6 +67,10 @@ header{
 .card img{
     aspect-ratio:4/3;
 }
+.products .container .card-footer a{
+    text-decoration: none;
+}
+
 .pagination{
     display: flex;
     justify-content: center;

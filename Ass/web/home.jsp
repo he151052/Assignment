@@ -6,7 +6,7 @@
 <%@page import="model.Category"%>
 <%@page import="model.Product"%>
 <%@page import="java.util.ArrayList"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -87,10 +87,10 @@
                                 <p class="card-text text-success fs-5 fw-bold">$<%=s.getPrice()%></p>  
                             </div>
                             <div class="card-footer text-center">
-                               
-                                    <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
-                                
-                                
+
+                                <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
+
+
                             </div>
                         </div>
                     </div>
@@ -104,11 +104,26 @@
 
         <nav aria-label="Page navigation example">
             <ul class="pagination ">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <%
+          int pi = (int)request.getAttribute("pageIndex");
+                %>
+                <c:if test="<%= pi > 1 %>">
+                    <li class="page-item"><a class="page-link" href="home?index=<%=pi-1 %>">Previous</a></li>
+                    </c:if>      
+
+                <%
+         int cout = (int)request.getAttribute("page");
+                %>
+
+                <% for(int p = 1;p<=cout;p++) {
+                %>
+
+                <li class="page-item  "><a class="page-link  <%= pi == p ? "active":"" %> " href="home?index=<%=p %>"><%=p %></a></li>
+
+                <%}%>
+                <c:if test="<%= pi < cout %>">
+                    <li class="page-item"><a class="page-link" href="home?index=<%= pi +1 %>">Next</a></li>
+                    </c:if>
             </ul>
         </nav>
 

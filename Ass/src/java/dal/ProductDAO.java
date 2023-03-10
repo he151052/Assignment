@@ -41,7 +41,32 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return list;
     }
-    
+
+    public List<Product> getProductToPagination(int index) {
+        List<Product> list = new ArrayList<>();
+        String sql = "SELECT  * FROM product\n"
+                + "ORDER BY (SELECT NULL)\n"
+                + "OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, (index-1)*6);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setImage(rs.getString("image"));
+                p.setPrice(rs.getDouble("price"));
+                p.setTitle(rs.getString("title"));
+                p.setDescription(rs.getString("description"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
     public List<Category> getAllCategory() {
         List<Category> lc = new ArrayList<>();
         String sql = "SELECT * from category";
@@ -52,7 +77,7 @@ public class ProductDAO extends BaseDAO<Product> {
                 Category c = new Category();
                 c.setCid(rs.getInt("cid"));
                 c.setCname(rs.getString("cname"));
-               
+
                 lc.add(c);
             }
         } catch (SQLException ex) {
@@ -60,11 +85,32 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return lc;
     }
+
+    public int countProduct() {
+        String sql = "select COUNT(*) from product";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-         List<Category> lc = dao.getAllCategory();
+        List<Category> lc = dao.getAllCategory();
         for (Category p : lc) {
             System.out.println(p);
         }
+        List<Product> lp = dao.getProductToPagination(1);
+        for (Product p : lp) {
+            System.out.println(p);
+        }
+        int count = dao.countProduct();
+        System.out.println(count);
     }
 }

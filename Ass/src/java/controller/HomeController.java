@@ -32,18 +32,28 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String indexPage = request.getParameter("index");
+        
+        if(indexPage == null){
+            indexPage = "1";
+        }
+        int index = Integer.parseInt(indexPage);
         ProductDAO dao = new ProductDAO();
-        List<Product> lp = dao.getAllProduct();
+//        List<Product> lp = dao.getAllProduct();
         List<Category> lc = dao.getAllCategory();
-        if (lp == null && lc == null) {
-            PrintWriter out = response.getWriter();
-            out.println("Cannot get the data");
-        } else {
+        List<Product> lp = dao.getProductToPagination(index);
+        int count = dao.countProduct();
+        int endPage = count / 6;
+        if (count % 6 != 0) {
+            endPage++;
+        }
+            
+            request.setAttribute("pageIndex", index);
+            request.setAttribute("page", endPage);
             request.setAttribute("lc", lc);
             request.setAttribute("lp", lp);
             request.getRequestDispatcher("home.jsp").forward(request, response);
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

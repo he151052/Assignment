@@ -13,6 +13,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-family: sans-serif;
     margin: 0;
 }
+a{
+    color: black;
+    
+}
 header{
     padding: 15px 45px;
     background: #f5f5f5;
@@ -70,7 +74,16 @@ header{
 .products .container .card-footer a{
     text-decoration: none;
 }
+.products .container .row .col .card{
+      transition: all .5s;
 
+    }
+.products .container .row .col:hover .card{
+       border-color: black;
+       transform:translate(0px,-10px);
+       z-index: 100;
+
+    }
 .pagination{
     display: flex;
     justify-content: center;
@@ -80,8 +93,9 @@ header{
 footer i{
     transition: all .5s;
 
+   
+} 
 
-}
 footer a{
     text-decoration: none;
     color: black;

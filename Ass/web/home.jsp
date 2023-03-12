@@ -30,37 +30,25 @@
             </div>
 
             <div class="card-group container">
-                <div class="card">
-                    <img src="img/3.jpg"   class="card-img-top ratio ratio-4x3" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <c:forEach items="${ln}" var="o">
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="${o.image}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">${o.name}</h5>
+                                    <p class="card-text">${o.title}</p>
+                                    <p class="card-text text-success fs-5 fw-bold">$${o.price}</p>  
+                                </div>
+                                <div class="card-footer text-center">
 
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/1.jpg"  class="card-img-top ratio ratio-4x3" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-                <div class="card">
-                    <img  src="img/2.jpg" class="card-img-top ratio ratio-4x3" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
+                                    <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
@@ -78,22 +66,26 @@
                     %>
                     <% for(Product s : l) {
                     %>
+                    
                     <div class="col">
-                        <div class="card h-100">
-                            <img src="<%=s.getImage() %>" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold"><%=s.getName() %></h5>
-                                <p class="card-text"><%=s.getTitle() %></p>
-                                <p class="card-text text-success fs-5 fw-bold">$<%=s.getPrice()%></p>  
+                        
+                            <div class="card h-100">
+                                <img src="<%=s.getImage() %>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold"><a class="text-decoration-none" href="cart.jsp"><%=s.getName() %></a></h5>
+                                    <p class="card-text"><%=s.getTitle() %></p>
+                                    <p class="card-text text-success fs-5 fw-bold">$<%=s.getPrice()%></p>  
+                                </div>
+                                <div class="card-footer text-center">
+
+                                    <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
+
+
+                                </div>
                             </div>
-                            <div class="card-footer text-center">
-
-                                <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
-
-
-                            </div>
-                        </div>
+                        
                     </div>
+
                     <%}%>
 
                 </div>

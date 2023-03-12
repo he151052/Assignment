@@ -36,7 +36,7 @@
                     <ul class="dropdown-menu">
                         <% for(Category c : lc) {
                         %>
-                        <li><a class="dropdown-item" href="#"><%=c.getCname() %></a></li>
+                        <li><a class="dropdown-item" href="category?cid=<%=c.getCid() %>"><%=c.getCname() %></a></li>
                             <%}%>
 
                     </ul>

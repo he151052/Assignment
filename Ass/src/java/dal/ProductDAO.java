@@ -146,16 +146,64 @@ public class ProductDAO extends BaseDAO<Product> {
         return 0;
     }
 
+    public List<Product> searchProductByName(String value) {
+        List<Product> list = new ArrayList<>();
+        String sql = "Select * from product\n"
+                + "where name like ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, "%" + value + "%");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setImage(rs.getString("image"));
+                p.setPrice(rs.getDouble("price"));
+                p.setTitle(rs.getString("title"));
+                p.setDescription(rs.getString("description"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    public Product getProductById(int id){
+        String sql = "Select * from product\n"
+                + "where id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setImage(rs.getString("image"));
+                p.setPrice(rs.getDouble("price"));
+                p.setTitle(rs.getString("title"));
+                p.setDescription(rs.getString("description"));
+                return p;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
 //        List<Category> lc = dao.getAllCategory();
 //        for (Category p : lc) {
 //            System.out.println(p);
 //        }
-        List<Product> lp = dao.getProductByCategory(3);
-        for (Product p : lp) {
-            System.out.println(p);
-        }
+//        List<Product> lp = dao.searchProductByName("jersey");
+//        for (Product p : lp) {
+//            System.out.println(p);
+//        }
+        Product p = dao.getProductById(1);
+        System.out.println(p);
 //        int count = dao.countProduct();
 //        System.out.println(count);
     }

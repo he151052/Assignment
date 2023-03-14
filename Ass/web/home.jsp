@@ -60,30 +60,50 @@
                 <h2 style="text-align: center">All Products</h2>
             </div>
             <div class="container">
-                <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="row row-cols-1 row-cols-md-4 g-4">
                     <%
            ArrayList<Product> l = (ArrayList<Product>)request.getAttribute("lp");
                     %>
                     <% for(Product s : l) {
                     %>
-                    
+
                     <div class="col">
-                        
-                            <div class="card h-100">
+
+                        <div class="card h-100">
+
+
+                            <div>
                                 <img src="<%=s.getImage() %>" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold"><a class="text-decoration-none" href="cart.jsp"><%=s.getName() %></a></h5>
-                                    <p class="card-text"><%=s.getTitle() %></p>
-                                    <p class="card-text text-success fs-5 fw-bold">$<%=s.getPrice()%></p>  
-                                </div>
-                                <div class="card-footer text-center">
-
-                                    <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
-
-
-                                </div>
                             </div>
-                        
+                            <div style="
+                                 height: 25px;
+                                 width: 25px;
+                                 line-height: 25px;
+                                 background-color: #eee;
+                                 display: flex;
+                                 justify-content: center;
+                                 align-items: center;
+                                 border-radius: 50%;
+                                 box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+                                 position: absolute;
+                                 right: 5px;
+                                 top: 5px;
+                                 ">
+                                <a class="wishlist<%=s.getId()%>" onclick="change(<%=s.getId()%>)"><i class="fa-regular fa-heart"></i></a>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold"><a class="text-decoration-none" href="detail?id=<%=s.getId() %>"><%=s.getName() %></a></h5>
+                                <p class="card-text"><%=s.getTitle() %></p>
+                                <p class="card-text text-success fs-5 fw-bold">$<%=s.getPrice()%></p>  
+                            </div>
+                            <div class="card-footer text-center">
+
+                                <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
+
+
+                            </div>
+                        </div>
+
                     </div>
 
                     <%}%>
@@ -130,24 +150,37 @@
 
         <!--JS-->
         <script>
-            window.onscroll = function () {
-                scrollFunction()
-            };
-            function scrollFunction() {
+                                    window.onscroll = function () {
+                                        scrollFunction()
+                                    };
+                                    function scrollFunction() {
 
-                if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                    document.getElementById("nav").style.top = "0";
-                    document.getElementById("myBtn").style.display = "block"
-                } else {
-                    document.getElementById("nav").style.top = "60px";
-                    document.getElementById("myBtn").style.display = "none"
-                }
-            }
+                                        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                                            document.getElementById("nav").style.top = "0";
+                                            document.getElementById("myBtn").style.display = "block"
+                                        } else {
+                                            document.getElementById("nav").style.top = "60px";
+                                            document.getElementById("myBtn").style.display = "none"
+                                        }
+                                    }
 
-            document.getElementById('myBtn').addEventListener("click", function () {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            });
+                                    document.getElementById('myBtn').addEventListener("click", function () {
+                                        document.body.scrollTop = 0;
+                                        document.documentElement.scrollTop = 0;
+                                    });
+                                    function change(pid) {
+
+                                        let heart = document.querySelector(".wishlist" + pid);
+
+
+
+                                        if (heart.innerHTML === '<i class="fa-regular fa-heart"></i>') {
+                                            heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                                        } else {
+                                            heart.innerHTML = '<i class="fa-regular fa-heart"></i>'
+                                        }
+
+                                    }
         </script>
 
     </body>

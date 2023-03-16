@@ -176,8 +176,10 @@
 
                                         if (heart.innerHTML === '<i class="fa-regular fa-heart"></i>') {
                                             heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                                            heart.style.color = 'red'
                                         } else {
                                             heart.innerHTML = '<i class="fa-regular fa-heart"></i>'
+                                            heart.style.color = 'black'
                                         }
 
                                     }

@@ -42,7 +42,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
+                    <a href="wishlist.jsp" class="nav-link ">wishlist</a>
                 </li>
             </ul>
             <form action="search" class="d-flex" role="search">

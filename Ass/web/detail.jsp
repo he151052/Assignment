@@ -66,10 +66,10 @@
 
                 if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
                     document.getElementById("nav").style.top = "0";
-                    document.getElementById("myBtn").style.display = "block"
+                    
                 } else {
                     document.getElementById("nav").style.top = "60px";
-                    document.getElementById("myBtn").style.display = "none"
+                    
                 }
             }
 

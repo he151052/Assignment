@@ -203,7 +203,11 @@ public class ProductDAO extends BaseDAO<Product> {
 //            System.out.println(p);
 //        }
         Product p = dao.getProductById(1);
-        System.out.println(p);
+        Product p2 = dao.getProductById(2);
+        List<Product> l = new ArrayList<>();
+        l.add(p);
+        l.add(p2);
+        System.out.println(l);
 //        int count = dao.countProduct();
 //        System.out.println(count);
     }

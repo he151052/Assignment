@@ -30,7 +30,13 @@ input[type="submit"]{
     border-radius: 5px;
     color: #fff;
 }
-input[type="submit"]:hover{
+.error{
+   
+    background-color: white!important;
+    font-size: 20px;
+    color: red;
+}
+input[type="submit"]:hover,.signin:hover,.signin:hover a{
     background-color: #12876f;
 }
 label{
@@ -55,4 +61,20 @@ i {
     position: absolute;
     font-size: 25px;
     background: white;
+}
+.signin{
+    width: 334px;
+    margin: 0 auto;
+    border-radius:5px;
+    padding: 10px;
+    background-color:  #16a085;
+    transition: all .5s;
+}
+.signin a{
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    transition: all .5s;
+    background-color:  #16a085;
 }

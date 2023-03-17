@@ -4,6 +4,7 @@
     Author     : oki
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Log in</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-<!--                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"/>-->
+        <!--                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"/>-->
         <link href="css/login.css" rel="stylesheet" />
 
 
@@ -30,12 +31,15 @@
                 <a href="signin.jsp">Sign in </a>
             </div>
         </form>
-            
-             <script>
-                    function inform(){
-                        alert("Sign in successully!")
-                    }
-                    inform()
-                </script>
+
+        <c:if test="${acc == 1}">
+            <script>
+
+                function inform() {
+                    alert("Sign in succesful!")
+                }
+                inform()
+            </script>
+        </c:if>
     </body>
 </html>

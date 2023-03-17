@@ -13,6 +13,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-family: sans-serif;
     margin: 0;
 }
+
 a{
     color: black;
     
@@ -35,6 +36,14 @@ header{
 .header__right a{
     text-decoration: none;
     color:black;
+}
+.header__right .info span:hover{
+    color:#757575;
+}
+.header__right .info i:hover{
+
+    border-radius: 50%;
+    background-color: #e5e5e5;
 }
 .container-fluid{
     padding: 0 45px;

@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Account;
 
 /**
@@ -34,11 +35,14 @@ public class LoginController extends HttpServlet {
         String pass = request.getParameter("password");
         AccountDAO dao = new AccountDAO();
         Account a = dao.login(user, pass);
+        HttpSession session = request.getSession();
         if(a == null){
+            
            request.setAttribute("err", "user or pass is incorrect!");
            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
         else{
+            session.setAttribute("acc", a);
             request.getRequestDispatcher("home").forward(request, response);
         }
     } 

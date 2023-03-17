@@ -5,15 +5,25 @@
     <div class="header__left">
         <h3>Be good, Be bad, Be yourself</h3>
     </div>
-
-    <div class="header__right">
-        <a href="login.jsp">Log in</a>
-    </div>
+    <c:if test="${sessionScope.acc != null}" >
+        <div class="header__right">
+            <a class="info"  style="margin-right: 20px">
+            <span >Hi, ${sessionScope.acc.username}</span>
+            <i class="fa-solid fa-user" style="padding:8px 10px;font-size: 25px"></i>
+           </a>
+            <a href="logout">Log out</a>
+        </div>
+    </c:if>
+    <c:if test="${sessionScope.acc == null}" >
+        <div class="header__right">
+            <a href="login.jsp">Log in</a>
+        </div>
+    </c:if>
 </header>
 <!--NAV-->
 <nav id="nav" class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="letter-spacing: 5px">ADADIS</a>
+        <a class="navbar-brand" href="home" style="letter-spacing: 5px">ADADIS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,9 +32,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="home">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
+             
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Products
@@ -42,8 +50,13 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="wishlist.jsp" class="nav-link ">wishlist</a>
+                    <a href="wishlist.jsp" class="nav-link ">Wishlist</a>
                 </li>
+                <c:if test="${sessionScope.acc.isAdmin == 1}">
+                <li class="nav-item">
+                    <a href="wishlist.jsp" class="nav-link ">Manage Product</a>
+                </li>
+                </c:if>
             </ul>
             <form action="search" class="d-flex" role="search">
                 <input name="value" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

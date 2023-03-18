@@ -112,7 +112,29 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return list;
     }
-
+    public List<Product> getProductBySellId(int id) {
+        List<Product> list = new ArrayList<>();
+        String sql = "SELECT  * FROM product\n"
+                + " where sell_ID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setImage(rs.getString("image"));
+                p.setPrice(rs.getDouble("price"));
+                p.setTitle(rs.getString("title"));
+                p.setDescription(rs.getString("description"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
     public List<Category> getAllCategory() {
         List<Category> lc = new ArrayList<>();
         String sql = "SELECT * from category";

@@ -54,7 +54,7 @@
                 </li>
                 <c:if test="${sessionScope.acc.isAdmin == 1}">
                 <li class="nav-item">
-                    <a href="wishlist.jsp" class="nav-link ">Manage Product</a>
+                    <a href="manageproduct" class="nav-link ">Manage Product</a>
                 </li>
                 </c:if>
             </ul>

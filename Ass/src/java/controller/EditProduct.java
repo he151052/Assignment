@@ -12,17 +12,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.List;
-import model.Account;
-import model.Category;
 import model.Product;
 
 /**
  *
  * @author oki
  */
-public class manageProduct extends HttpServlet {
+public class EditProduct extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,29 +30,17 @@ public class manageProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+         request.setCharacterEncoding("UTF-8");
+        String pid = request.getParameter("id");
+        String pname = request.getParameter("name");
+        String pimage = request.getParameter("image");
+        String pprice = request.getParameter("price");
+        String ptitle = request.getParameter("title");
+        String pdescription = request.getParameter("description");
+        String pcategory = request.getParameter("category");
         ProductDAO dao = new ProductDAO();
-        HttpSession session = request.getSession();
-        Account a = (Account)session.getAttribute("acc");
-        int id = a.getId();
-       
-        List<Category> lc = dao.getAllCategory();
-         String indexPage = request.getParameter("index");
-        
-        if(indexPage == null){
-            indexPage = "1";
-        }
-        int index = Integer.parseInt(indexPage);
-         int count = dao.countProduct();
-        int endPage = count / 6;
-        if (count % 6 != 0) {
-            endPage++;
-        }
-        List<Product> products = dao.getProductToPaginationBySellID(id,index);
-        request.setAttribute("pageIndex", index);
-        request.setAttribute("page", endPage);
-        request.setAttribute("lc", lc);
-        request.setAttribute("products", products);
-        request.getRequestDispatcher("manageProduct.jsp").forward(request, response);
+        dao.editProduct(pname, pimage, pprice, ptitle, pdescription, pcategory, pid);
+        response.sendRedirect("manageproduct");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

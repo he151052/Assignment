@@ -12,9 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import model.Account;
 import model.Category;
 import model.Product;
 
@@ -22,7 +20,7 @@ import model.Product;
  *
  * @author oki
  */
-public class manageProduct extends HttpServlet {
+public class LoadIntoEditController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,29 +32,14 @@ public class manageProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        int id =Integer.parseInt(request.getParameter("id"));
         ProductDAO dao = new ProductDAO();
-        HttpSession session = request.getSession();
-        Account a = (Account)session.getAttribute("acc");
-        int id = a.getId();
-       
-        List<Category> lc = dao.getAllCategory();
-         String indexPage = request.getParameter("index");
-        
-        if(indexPage == null){
-            indexPage = "1";
-        }
-        int index = Integer.parseInt(indexPage);
-         int count = dao.countProduct();
-        int endPage = count / 6;
-        if (count % 6 != 0) {
-            endPage++;
-        }
-        List<Product> products = dao.getProductToPaginationBySellID(id,index);
-        request.setAttribute("pageIndex", index);
-        request.setAttribute("page", endPage);
-        request.setAttribute("lc", lc);
-        request.setAttribute("products", products);
-        request.getRequestDispatcher("manageProduct.jsp").forward(request, response);
+        Product p = dao.getProductById(id);
+        List<Category> listC = dao.getAllCategory();
+
+        request.setAttribute("detail", p);
+        request.setAttribute("listCC", listC);
+        request.getRequestDispatcher("editProduct.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

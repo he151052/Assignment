@@ -56,6 +56,14 @@
         <servlet-name>LoadIntoEditController</servlet-name>
         <servlet-class>controller.LoadIntoEditController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>controller.CartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowCartController</servlet-name>
+        <servlet-class>controller.ShowCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -101,21 +109,14 @@
         <url-pattern>/editProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>addProduct</servlet-name>
-        <url-pattern>/addProduct</url-pattern>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/cart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoadIntoEditController</servlet-name>
-        <url-pattern>/edit</url-pattern>
+        <servlet-name>ShowCartController</servlet-name>
+        <url-pattern>/show</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
-    </session-config>
     <welcome-file-list>
-        <welcome-file>
-            home
-        </welcome-file>
+        <welcome-file>home</welcome-file>
     </welcome-file-list>
 </web-app>

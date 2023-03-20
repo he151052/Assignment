@@ -63,7 +63,8 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <div class="shopping-cart" >
-                <i class="fa-solid fa-cart-shopping"></i>
+                <a href="cart">
+                <i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
     </div>

@@ -98,7 +98,7 @@
                             </div>
                             <div class="card-footer text-center">
 
-                                <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
+                                <a href="cart?id=<%=s.getId()%>" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
 
 
                             </div>

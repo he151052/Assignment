@@ -29,9 +29,9 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" >Name</th>
-                                        <th scope="col">Format</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Price</th>
+
+                                        <th scope="col" >Quantity</th>
+                                        <th scope="col"  >Price</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -45,84 +45,82 @@
                                                          style="width: 120px;" alt="Book">
                                                     <div class="flex-column ms-4">
                                                         <p class="mb-2">${o.name}</p>
-                                                        <p class="mb-0">${o.price}</p>
+
                                                     </div>
                                                 </div>
                                             </th>
-                                            <td class="align-middle">
-                                                <p class="mb-0" style="font-weight: 500;">Digital</p>
-                                            </td>
+
                                             <td class="align-middle">
                                                 <div class="d-flex flex-row">
-                                                    <button class="btn btn-link px-2"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                        <i class="fas fa-minus"></i>
-                                                    </button>
+                                                    <a href="decrease?id=${o.id}"> <button class="btn btn-link px-2"
+                                                                                           onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button></a>
 
-                                                    <input id="form1" min="0" name="quantity" value="2" type="number"
+                                                    <input id="form1" min="0" name="quantity" value="${o.amount}" type="number"
                                                            class="form-control form-control-sm" style="width: 50px;" />
 
-                                                    <button class="btn btn-link px-2"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
+                                                    <a href="cart?id=${o.id}"> <button class="btn btn-link px-2"
+                                                                                       onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button></a>
                                                 </div>
                                             </td>
                                             <td class="align-middle">
                                                 <p class="mb-0" style="font-weight: 500;">$${o.price}</p>
                                             </td>
                                             <td class="align-middle">
-                                                <i class="fa-solid fa-trash "></i>
+                                                <a href="deleteCart?id=${o.id}"> <i class="fa-solid fa-trash "></i></a>
                                             </td>
                                         </tr>
-                                       </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="card shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px;">
-                                <div class="card-body p-4">
-
-                                    <div class="row text-center">
-
-                                        <div class=" ">
-                                            <div class="d-flex justify-content-between" style="font-weight: 500;">
-                                                <p class="mb-2">c</p>
-                                                <p class="mb-2">$</p>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between" style="font-weight: 500;">
-                                                <p class="mb-0">d</p>
-                                                <p class="mb-0">$2.99</p>
-                                            </div>
-
-                                            <hr class="my-4">
-
-                                            <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
-                                                <p class="mb-2">Total (tax included)</p>
-                                                <p class="mb-2">$26.48</p>
-                                            </div>
-
-                                            <button type="button" class="btn btn-primary btn-block btn-lg">         
-                                                <div class="d-flex justify-content-between">
-                                                    <span>Checkout </span>
-
-                                                </div>
-                                            </button>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
+                                    </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
+
+                        <div class="card shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px;">
+                            <div class="card-body p-4">
+
+                                <div class="row text-center">
+
+                                    <div class=" ">
+                                        <div class="d-flex justify-content-between" style="font-weight: 500;">
+                                            <p class="mb-2">Subtotal</p>
+                                            <p class="mb-2">$${total}</p>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between" style="font-weight: 500;">
+                                            <p class="mb-0">Shipping fee</p>
+                                            <p class="mb-0">Free</p>
+                                        </div>
+
+                                        <hr class="my-4">
+
+                                        <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
+                                            <p class="mb-2">Total (tax included)</p>
+                                            <p class="mb-2">$${total}</p>
+                                        </div>
+
+                                        <button type="button" class="btn btn-primary btn-block btn-lg">         
+                                            <div class="d-flex justify-content-between">
+                                                <span>Checkout </span>
+
+                                            </div>
+                                        </button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!--BOOSTRAP JS-->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!--BOOSTRAP JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-        </body>
-    </html>
+    </body>
+</html>

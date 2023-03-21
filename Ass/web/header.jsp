@@ -7,10 +7,10 @@
     </div>
     <c:if test="${sessionScope.acc != null}" >
         <div class="header__right">
-            <a class="info"  style="margin-right: 20px">
-            <span >Hi, ${sessionScope.acc.username}</span>
-            <i class="fa-solid fa-user" style="padding:8px 10px;font-size: 25px"></i>
-           </a>
+            <a href="profile" class="info"  style="margin-right: 20px">
+                <span >Hi, ${sessionScope.acc.username}</span>
+                <i class="fa-solid fa-user" style="padding:8px 10px;font-size: 25px"></i>
+            </a>
             <a href="logout">Log out</a>
         </div>
     </c:if>
@@ -32,7 +32,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="home">Home</a>
                 </li>
-             
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Products
@@ -53,9 +53,14 @@
                     <a href="wishlist.jsp" class="nav-link ">Wishlist</a>
                 </li>
                 <c:if test="${sessionScope.acc.isAdmin == 1}">
-                <li class="nav-item">
-                    <a href="manageproduct" class="nav-link ">Manage Product</a>
-                </li>
+                    <li class="nav-item">
+                        <a href="manageproduct" class="nav-link ">Manage Product</a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.acc != null}" >
+                    <li class="nav-item">
+                        <a href="profile" class="nav-link ">Profile</a>
+                    </li>
                 </c:if>
             </ul>
             <form action="search" class="d-flex" role="search">
@@ -64,7 +69,7 @@
             </form>
             <div class="shopping-cart" >
                 <a href="cart">
-                <i class="fa-solid fa-cart-shopping"></i></a>
+                    <i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
     </div>

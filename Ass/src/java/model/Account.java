@@ -12,7 +12,24 @@ public class Account {
     private int id;
     private String username,password;
     private int isUser,isAdmin;
+    private String mail;
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public Account(int id, String username, String password, int isUser, int isAdmin, String mail) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.isUser = isUser;
+        this.isAdmin = isAdmin;
+        this.mail = mail;
+    }
     public Account() {
     }
 
@@ -66,8 +83,10 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" + "id=" + id + ", username=" + username + ", password=" + password + ", isUser=" + isUser + ", isAdmin=" + isAdmin + '}';
+        return "Account{" + "id=" + id + ", username=" + username + ", password=" + password + ", isUser=" + isUser + ", isAdmin=" + isAdmin + ", mail=" + mail + '}';
     }
+
+    
     
     
     

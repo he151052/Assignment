@@ -48,7 +48,7 @@
                             
                            
                             <div class="action">
-                                <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                                <a href="cart?id=${p.id}"> <button class="add-to-cart btn btn-default" type="button">add to cart</button></a>
                                 <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                             </div>
                         </div>

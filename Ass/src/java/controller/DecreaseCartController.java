@@ -5,7 +5,6 @@
 
 package controller;
 
-import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,15 +12,12 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import model.Cart;
 
 /**
  *
  * @author oki
  */
-public class ShowCartController extends HttpServlet {
+public class DecreaseCartController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,38 +29,39 @@ public class ShowCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("id");
         Cookie arr[] = request.getCookies();
-        PrintWriter out = response.getWriter();
-        List<Cart> list = new ArrayList<>();
-        ProductDAO dao = new ProductDAO();
+        String txt = "";
         for (Cookie o : arr) {
             if (o.getName().equals("id")) {
-                String txt[] = o.getValue().split(":");
-                for (String s : txt) {
-                    list.add(dao.getProduct(s));
-                }
+                txt = txt + o.getValue();
+                o.setMaxAge(0);
+                response.addCookie(o);
             }
         }
-        for (int i = 0; i < list.size(); i++) {
-            int count = 1;
-            for (int j = i+1; j < list.size(); j++) {
-                if(list.get(i).getId() == list.get(j).getId()){
-                    count++;
-                    list.remove(j);
-                    j--;
-                    list.get(i).setAmount(count);
+        String ids[] = txt.split(":");
+        String txtOutPut = "";
+        int check = 0;
+        for (int i = 0; i < ids.length; i++) {
+            if (ids[i].equals(id)) {
+                check++;
+            }
+            if (check != 1) {
+                if (txtOutPut.isEmpty()) {
+                    txtOutPut = ids[i];
+                } else {
+                    txtOutPut = txtOutPut + ":" + ids[i];
                 }
+            } else {
+                check++;
             }
         }
-        double total = 0;
-        for (Cart o : list) {
-            total = total + o.getAmount() * o.getPrice();
+        if (!txtOutPut.isEmpty()) {
+            Cookie c = new Cookie("id", txtOutPut);
+            c.setMaxAge(60 * 60 * 24);
+            response.addCookie(c);
         }
-        request.setAttribute("list", list);
-        request.setAttribute("total", total);
-//        request.setAttribute("shipping",  30);
-//        request.setAttribute("sum", 1.1 * total);
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
+        response.sendRedirect("show");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

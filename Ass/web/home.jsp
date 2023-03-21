@@ -40,12 +40,7 @@
                                     <p class="card-text">${o.title}</p>
                                     <p class="card-text text-success fs-5 fw-bold">$${o.price}</p>  
                                 </div>
-                                <div class="card-footer text-center">
-
-                                    <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping p-1"></i> Add to cart</a>
-
-
-                                </div>
+                                
                             </div>
                         </div>
                     </c:forEach>
@@ -89,7 +84,7 @@
                                  right: 5px;
                                  top: 5px;
                                  ">
-                                <a class="wishlist<%=s.getId()%>" onclick="change(<%=s.getId()%>)"><i class="fa-regular fa-heart"></i></a>
+                                <a  class="wishlist<%=s.getId()%>" onclick="change(<%=s.getId()%>)"><i class="fa-regular fa-heart"></i></a>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title fw-bold"><a class="text-decoration-none" href="detail?id=<%=s.getId() %>"><%=s.getName() %></a></h5>

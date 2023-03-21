@@ -14,7 +14,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-        
+        <c:forEach items="${list}" var="o">
+            ${o.image}
+        </c:forEach>
+
     </body>
 </html>

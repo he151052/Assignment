@@ -5,23 +5,21 @@
 
 package controller;
 
-import dal.ProductDAO;
+import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import model.Cart;
+import jakarta.servlet.http.HttpSession;
+import model.Account;
 
 /**
  *
  * @author oki
  */
-public class ShowCartController extends HttpServlet {
+public class Profile extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,38 +31,15 @@ public class ShowCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Cookie arr[] = request.getCookies();
-        PrintWriter out = response.getWriter();
-        List<Cart> list = new ArrayList<>();
-        ProductDAO dao = new ProductDAO();
-        for (Cookie o : arr) {
-            if (o.getName().equals("id")) {
-                String txt[] = o.getValue().split(":");
-                for (String s : txt) {
-                    list.add(dao.getProduct(s));
-                }
-            }
-        }
-        for (int i = 0; i < list.size(); i++) {
-            int count = 1;
-            for (int j = i+1; j < list.size(); j++) {
-                if(list.get(i).getId() == list.get(j).getId()){
-                    count++;
-                    list.remove(j);
-                    j--;
-                    list.get(i).setAmount(count);
-                }
-            }
-        }
-        double total = 0;
-        for (Cart o : list) {
-            total = total + o.getAmount() * o.getPrice();
-        }
-        request.setAttribute("list", list);
-        request.setAttribute("total", total);
-//        request.setAttribute("shipping",  30);
-//        request.setAttribute("sum", 1.1 * total);
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
+        AccountDAO dao = new AccountDAO();
+        HttpSession session = request.getSession();
+        Account a = (Account)session.getAttribute("acc");
+        String username = a.getUsername();
+        
+        Account profile = dao.checkAccExist(username);
+        
+        request.setAttribute("profile", profile);
+        request.getRequestDispatcher("profile.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

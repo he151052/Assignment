@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import model.Cart;
 import model.Category;
 import model.Product;
+import model.Wish;
 
 /**
  *
@@ -318,7 +319,25 @@ public class ProductDAO extends BaseDAO<Product> {
         }
         return null;
     }
+public Wish getProductToWishList(String txt) {
+        String sql = "select * from product where id = ?";
+        List<Wish> list = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
 
+            statement.setString(1, txt);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                return new Wish(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
 //        List<Category> lc = dao.getAllCategory();
